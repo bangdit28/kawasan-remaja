@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Galeri Gambar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+.new-badge {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  font-size: 0.65em;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 4px;
+  margin-left: 5px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+        :root {
+            --primary-purple: #6A5ACD;
+            --primary-blue: #1E90FF;
+            --light-gray: #f0f2f5;
+            --dark-gray: #333;
+            --text-gray: #555;
+            --white: #fff;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            --header-bg-page: #2c3e50;
+            --header-text-page: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: var(--white);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .gallery-page-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: var(--header-bg-page);
+            color: var(--header-text-page);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .gallery-page-header .back-button {
+            color: var(--header-text-page);
+            font-size: 1.7em;
+            margin-right: 15px;
+            text-decoration: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .gallery-page-header .title {
+            font-size: 1.15em;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .gallery-content-area {
+            padding: 15px;
+        }
+
+        .image-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .image-gallery-item {
+            background-color: var(--white);
+            border-radius: 6px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .image-gallery-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .image-gallery-item img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            background-color: #e0e0e0;
+        }
+        .thumbnail-caption {
+            text-align: center;
+            font-size: 0.8em;
+            color: var(--text-gray);
+            padding: 5px 3px;
+            background-color: #fafafa;
+            border-top: 1px solid #eee;
+        }
+
+        .image-viewer-container {
+            display: none;
+            background-color: var(--white);
+            padding: 10px 0;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .image-viewer-container .viewer-controls {
+            margin-bottom: 15px;
+        }
+        .image-viewer-container .back-to-gallery-button {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        .image-viewer-container .full-image-wrapper {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .image-viewer-container .full-image-wrapper img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            max-width: 450px; margin: 0 auto; background-color: var(--white);
+            display: flex; justify-content: space-around; padding: 10px 0;
+            border-top: 1px solid #eee; box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            color: var(--text-gray); text-decoration: none; font-size: 0.75em;
+        }
+        .nav-item i { font-size: 1.5em; margin-bottom: 3px; }
+        .nav-item.active { color: var(--primary-blue); }
+        .nav-item.active i { color: var(--primary-blue); }
+        .nav-item.active .dot-indicator {
+            width: 5px; height: 5px; background-color: var(--primary-blue);
+            border-radius: 50%; margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="gallery-page-header">
+        <a id="headerBackButton" class="back-button" aria-label="Kembali">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1 class="title" id="pageTitle">Galeri Gambar</h1>
+    </header>
+    <main class="gallery-content-area">
+        <div id="galleryView" class="image-gallery-grid">
+            <article class="image-gallery-item" data-gallery='["https://s48.erome.com/1946/XXzL2F9D/Jdxee1s7.jpeg", "https://s48.erome.com/1946/XXzL2F9D/RVXLASqQ.jpeg"]' data-image-title="abg cantik vivi">
+                <img src="https://i.imgur.com/mYBAl1h.jpeg" alt="Thumbnail 2">
+                <div class="thumbnail-caption">abg cantik vivi</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s86.erome.com/1724/B1Wq2xMq/bDqpxlIF.jpeg", "https://s86.erome.com/1724/B1Wq2xMq/vG4WB5vq.jpeg", "https://s86.erome.com/1724/B1Wq2xMq/PsRXjUjs.jpeg", "https://s86.erome.com/1724/B1Wq2xMq/QQ6OesMS.jpeg"]' data-image-title="Pap hijab Sarah">
+                <img src="https://i.imgur.com/xd3hld4.jpeg" alt="Thumbnail 2">
+                <div class="thumbnail-caption">Pap hijab Sarah</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s54.erome.com/1697/nWW1nyYC/CUnrKVqZ.jpeg", "https://s54.erome.com/1697/nWW1nyYC/HEdC2r2V.jpeg", "https://s54.erome.com/1697/nWW1nyYC/q5Qg1Apy.jpeg", "https://s54.erome.com/1697/nWW1nyYC/0u7mZivO.jpeg", "https://s54.erome.com/1697/nWW1nyYC/tvLp3mH6.jpeg", "https://s54.erome.com/1697/nWW1nyYC/49DKv2HW.jpeg"]' data-image-title="Debi Rahayu bugil">
+                <img src="https://s54.erome.com/1697/nWW1nyYC/pB92waWJ.jpeg" alt="Thumbnail 3">
+                <div class="thumbnail-caption">Debi Rahayu bugil</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s81.erome.com/2355/EXlPEMRZ/YfctHju5.jpeg", "https://s81.erome.com/2355/EXlPEMRZ/i1fDwOxK.jpeg", "https://s81.erome.com/2355/EXlPEMRZ/OzECLaKv.jpeg", "https://s81.erome.com/2355/EXlPEMRZ/4eCHccCQ.jpeg", "https://s81.erome.com/2355/EXlPEMRZ/OMvR5xnT.jpeg", "https://s81.erome.com/2355/EXlPEMRZ/eSeBJJhz.jpeg", "https://s81.erome.com/2355/EXlPEMRZ/7OsvhcJk.jpeg", "https://s81.erome.com/2355/EXlPEMRZ/jBO4jpTX.jpeg"]' data-image-title="hijab cantik kacamata">
+                <img src="https://s81.erome.com/2355/EXlPEMRZ/lvQimpfy.jpeg" alt="Thumbnail 4">
+                <div class="thumbnail-caption">hijab cantik kacamata</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s64.erome.com/2662/KEOnSVp0/AWwEthkF.jpeg", "https://s64.erome.com/2662/KEOnSVp0/OtvLbWqG.jpeg", "https://s64.erome.com/2662/KEOnSVp0/XqOLTS1D.jpeg", "https://s64.erome.com/2662/KEOnSVp0/I2F3IgSZ.jpeg", "https://s64.erome.com/2662/KEOnSVp0/Kx7HE2QS.jpeg", "https://s64.erome.com/2662/KEOnSVp0/yz6MAIFl.jpeg"]' data-image-title="azila milf hijab">
+                <img src="https://s64.erome.com/2662/KEOnSVp0/JdckOzVv.jpeg" alt="Thumbnail 5">
+                <div class="thumbnail-caption">azila milf hijab</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s51.erome.com/2526/Ocp4Fgjh/fTZqATzc.jpeg", "https://s51.erome.com/2526/Ocp4Fgjh/plI4E4mA.jpeg"]' data-image-title="tante hijab cantik">
+                <img src="https://s51.erome.com/2526/Ocp4Fgjh/Hp3Nlb6Z.jpeg" alt="Thumbnail 6">
+                <div class="thumbnail-caption">tante hijab cantik</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s89.erome.com/3148/7vxl1T1f/IqtbmbbJ.jpeg", "https://s89.erome.com/3148/7vxl1T1f/gNmeapK6.jpeg", "https://s89.erome.com/3148/7vxl1T1f/TxLCbawC.jpeg", "https://s89.erome.com/3148/7vxl1T1f/ZNhQ9gg6.jpeg", "https://s89.erome.com/3148/7vxl1T1f/kGTaa21H.jpeg"]' data-image-title="shasha hijab cantik">
+                <img src="https://s89.erome.com/3148/7vxl1T1f/n2NpeM5y.jpeg" alt="Thumbnail 7">
+                <div class="thumbnail-caption">shasha hijab cantik</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s202.erome.com/1153/oK7zftqc/oWHHeL4A.jpeg", "https://s202.erome.com/1153/oK7zftqc/WxfL7OZK.jpeg", "https://s202.erome.com/1153/oK7zftqc/agNMc2zn.jpeg", "https://s202.erome.com/1153/oK7zftqc/6JkFuyFc.jpeg", "https://s202.erome.com/1153/oK7zftqc/XHgDlbWV.jpeg", "https://s202.erome.com/1153/oK7zftqc/5aYKUk9Y.jpeg"]' data-image-title="Pap Hijab Cantik">
+                <img src="https://i.imgur.com/x8HnlMx.jpeg" alt="Thumbnail 8">
+                <div class="thumbnail-caption">Pap Hijab Cantik</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s8.erome.com/1153/EfaZNlD4/VSthBYCD.jpeg", "https://s8.erome.com/1153/EfaZNlD4/tAkQe7Sz.jpeg", "https://s8.erome.com/1153/EfaZNlD4/F0Jf4kXS.jpeg", "https://s8.erome.com/1153/EfaZNlD4/E1BdLwWw.jpeg", "https://s8.erome.com/1153/EfaZNlD4/G9pvqY3I.jpeg", "https://s8.erome.com/1153/EfaZNlD4/CchgsDfx.jpeg", "https://s8.erome.com/1153/EfaZNlD4/J57f7mWI.jpeg"]' data-image-title="Hijab sma boobs">
+                <img src="https://s8.erome.com/1153/EfaZNlD4/4PFLxxqt.jpeg" alt="Thumbnail 9">
+                <div class="thumbnail-caption">Hijab sma boobs</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s90.erome.com/3148/lO3GWRny/kryX8Xh5.jpeg", "https://s90.erome.com/3148/lO3GWRny/FDySYrUy.jpeg", "https://s90.erome.com/3148/lO3GWRny/6t5rUPov.jpeg", "https://s90.erome.com/3148/lO3GWRny/VfqPgO69.jpeg", "https://s90.erome.com/3148/lO3GWRny/UEiaeJyk.jpeg", "https://s90.erome.com/3148/lO3GWRny/m9apN2lu.jpeg", "https://s90.erome.com/3148/lO3GWRny/cyP0SWOu.jpeg", "https://s90.erome.com/3148/lO3GWRny/wYKXbv3R.jpeg", "https://s90.erome.com/3148/lO3GWRny/tpoBgLnS.jpeg"]' data-image-title="Pap Untuk Ayang">
+                <img src="https://s90.erome.com/3148/lO3GWRny/RLfdZpwF.jpeg" alt="Thumbnail 10">
+                <div class="thumbnail-caption">Pap Untuk Ayang</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s97.erome.com/2834/OZrjW5Lb/18YX8246.jpeg", "https://s97.erome.com/2834/OZrjW5Lb/svBehphj.jpeg", "https://s97.erome.com/2834/OZrjW5Lb/WXHrPHl4.jpeg"]' data-image-title="tante tetangga hijab">
+                <img src="https://s97.erome.com/2834/OZrjW5Lb/ucCCcJ5Y.jpeg" alt="Thumbnail 11">
+                <div class="thumbnail-caption">tante tetangga hijab</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s19.erome.com/922/cWvZ64z8/PbU6hSJY.jpeg", "https://s19.erome.com/922/cWvZ64z8/FMqujfFJ.jpeg", "https://s19.erome.com/922/cWvZ64z8/SEXLQ7yS.jpeg"]' data-image-title="abg viral pada masanya">
+                <img src="https://s19.erome.com/922/cWvZ64z8/eGlxMOXI.jpeg" alt="Thumbnail 12">
+                <div class="thumbnail-caption">abg viral pap</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://s57.erome.com/1716/NC50l4HX/klDTBwyL.jpeg", "https://s57.erome.com/1716/NC50l4HX/SerOaf5G.jpeg", "https://s57.erome.com/1716/NC50l4HX/FlRVsd4K.jpeg"]' data-image-title="Hijab Viral">
+                <img src="https://s57.erome.com/1716/NC50l4HX/mMVeqdnt.jpeg" alt="Thumbnail 13">
+                <div class="thumbnail-caption">Hijab Viral</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 14">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 14">
+                <div class="thumbnail-caption">Galeri 14</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 15">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 15">
+                <div class="thumbnail-caption">Galeri 15</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 16">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 16">
+                <div class="thumbnail-caption">Galeri 16</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 17">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 17">
+                <div class="thumbnail-caption">Galeri 17</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 18">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 18">
+                <div class="thumbnail-caption">Galeri 18</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 19">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 19">
+                <div class="thumbnail-caption">Galeri 19</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 20">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 20">
+                <div class="thumbnail-caption">Galeri 20</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 21">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 21">
+                <div class="thumbnail-caption">Galeri 21</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 22">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 22">
+                <div class="thumbnail-caption">Galeri 22</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 23">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 23">
+                <div class="thumbnail-caption">Galeri 23</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 24">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 24">
+                <div class="thumbnail-caption">Galeri 24</div>
+            </article>
+            <article class="image-gallery-item" data-gallery='["https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg", "https://img.doodcdn.io/snaps/vl66897gxinaqqyd.jpg"]' data-image-title="Galeri 25">
+                <img src="https://img.doodcdn.io/snaps/y7kzc2et9ddgpurm.jpg" alt="Thumbnail 25">
+                <div class="thumbnail-caption">Galeri 25</div>
+            </article>
+        </div>
+
+        <div id="imageViewerContainer" class="image-viewer-container">
+            <div class="viewer-controls">
+                <button class="back-to-gallery-button" id="backToGalleryBtnFromImageViewer">
+                    <i class="fas fa-th-large"></i> Kembali ke Galeri
+                </button>
+            </div>
+            <div class="full-image-wrapper" id="multiImageViewer"></div>
+        </div>
+    </main>
+</div>
+
+<nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+    </a>
+    <a href="shorts.html" class="nav-item">
+        <i class="fas fa-play-circle"></i>
+        <span>Video Pendek</span>
+    </a>
+    <a href="galeri.html" class="nav-item active">
+        <i class="fas fa-images"></i>
+        <span>Galery</span>
+        <span class="dot-indicator"></span>
+    </a>
+    <a href="video.html" class="nav-item">
+        <i class="fas fa-video"></i>
+        <span>Video</span>
+    </a>
+    <a href="info.html" class="nav-item">
+        <i class="fas fa-info-circle"></i>
+        <span>Info</span>
+    </a>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const galleryView = document.getElementById('galleryView');
+        const imageViewerContainer = document.getElementById('imageViewerContainer');
+        const multiImageViewer = document.getElementById('multiImageViewer');
+        const backToGalleryBtnFromImageViewer = document.getElementById('backToGalleryBtnFromImageViewer');
+        const pageTitleElement = document.getElementById('pageTitle');
+        const headerBackButton = document.getElementById('headerBackButton');
+        const thumbnailItems = document.querySelectorAll('.image-gallery-item');
+
+        function switchToImageViewer(gallery, title) {
+            multiImageViewer.innerHTML = '';
+            gallery.forEach(url => {
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = title;
+                multiImageViewer.appendChild(img);
+            });
+            galleryView.style.display = 'none';
+            imageViewerContainer.style.display = 'block';
+            pageTitleElement.textContent = title;
+        }
+
+        function switchToGalleryView() {
+            imageViewerContainer.style.display = 'none';
+            galleryView.style.display = 'grid';
+            pageTitleElement.textContent = "Galeri Gambar";
+        }
+
+        thumbnailItems.forEach(item => {
+            item.addEventListener('click', function () {
+                const galleryData = this.getAttribute('data-gallery');
+                const imageTitle = this.getAttribute('data-image-title') || "Galeri";
+                try {
+                    const gallery = JSON.parse(galleryData);
+                    switchToImageViewer(gallery, imageTitle);
+                } catch (e) {
+                    console.error("Format data-gallery tidak valid:", e);
+                }
+            });
+        });
+
+        backToGalleryBtnFromImageViewer.addEventListener('click', switchToGalleryView);
+
+        headerBackButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (imageViewerContainer.style.display !== 'none') {
+                switchToGalleryView();
+            } else {
+                history.back();
+            }
+        });
+    });
+</script>
+</body>
+</html>

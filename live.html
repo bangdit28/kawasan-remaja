@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Live Artikel (SYAKIRAH LIVE)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS dari SYAKIRAH LIVE -->
+    <link rel="stylesheet" type="text/css" href="https://bigvana.github.io/live/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bigvana.github.io/live/all.min.css">
+    <link rel="stylesheet" href="https://bigvana.github.io/live/style.min.css" id="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://live.rieketeam.org/static/biopages.min.css?v=1.0">
+    <link rel="stylesheet" href="https://bigvana.github.io/live/style.css">
+
+    <style>
+        :root {
+            /* Variabel Warna dari index.html Anda */
+            --primary-blue: #1E90FF;
+            --light-gray: #f0f2f5;
+            --dark-gray: #333;
+            --white: #fff;
+            --text-gray: #555;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+        }
+
+        .app-container {
+            max-width: 450px;
+            margin: 0 auto;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #000;
+        }
+
+        .main-content-wrapper {
+            flex: 1 1 auto;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #main-container { /* ID dari SYAKIRAH LIVE */
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Style inline dari SYAKIRAH LIVE (minimal) */
+        .fa,.fab,.far,.fas,.fa-brands,.fa-solid{font-size: 1.5em !important;}
+        .btn-custom,.btn-custom.active{font-weight:700;}
+        .rss{font-weight:400; height:300px;}
+        .rss a{color: var(--primary-blue) !important;}
+        .cc-floating.cc-type-info.cc-theme-classic .cc-btn{color:#000 !important;}
+        .modal-backdrop.show{opacity:0.85!important;}
+        #social a:first-child{margin-left: 0 !important;}
+        .form-control{background:#fff !important;color:#000 !important;}
+        .layout2 .d-block{height:150px;}
+        .layout2 .useravatar{margin-top: -60px;}
+        .fa-animated .fa{transition: transform 0.2s linear;font-size: 18px !important;}
+        .fa-animated:not(.collapsed) .fa{transform: rotate(180deg);}
+        .btn-icon-only{width:36px;height:36px;}
+        .btn+.btn {margin-left: 0 !important;}
+        .btn-custom span{display:inline-block;max-width: 80%;}
+        .modal{color:#000 !important;}
+        .btn-custom img{max-width: 15%;}
+        .btn-custom .fa,.btn-custom .fab,.btn-custom .far,.btn-custom .fas,.btn-custom .fa-brands,.btn-custom .fa-solid{font-size:2.0em !important;}
+        .translate-middle-y{transform: translateY(-50%) !important;}
+        .top-50{top: 50%;}
+	    .btn-custom,.card{border-radius:0;}
+
+        /* === STYLING NAVIGASI BAWAH (100% SAMA DENGAN index.html) === */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            max-width: 450px; margin: 0 auto; background-color: var(--white);
+            display: flex; justify-content: space-around; padding: 10px 0;
+            border-top: 1px solid #eee; box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            color: var(--text-gray); text-decoration: none; font-size: 0.75em;
+        }
+        .nav-item i { font-size: 1.5em; margin-bottom: 3px; }
+        .nav-item.active { color: var(--primary-blue); }
+        .nav-item.active i { color: var(--primary-blue); }
+        .nav-item.active .dot-indicator {
+            width: 5px; height: 5px; background-color: var(--primary-blue);
+            border-radius: 50%; margin-top: 2px;
+        }
+        /* === AKHIR STYLING NAVIGASI BAWAH === */
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="main-content-wrapper">
+            <!-- KONTEN DARI "SYAKIRAH LIVE" LANGSUNG DI SINI -->
+            <div class="container" id="main-container"> <!-- Ini adalah .container dari SYAKIRAH LIVE -->
+                <img src="https://bigvana.github.io/live/cwe.gif" alt="Live Stream" class="live-stream">
+                <div class="live-labels">LIVE</div>
+                <div class="user-info">
+                    <img src="https://bigvana.github.io/live/syakirah.png" alt="Avatar" class="avatar">
+                    <span class="user-name">Mom bella</span>
+                </div>
+                <div class="viewers">9999++ Viewers</div>
+                <div class="comment-section">
+                    <div class="comments">
+                        <!-- Komentar-komentar -->
+                        <div class="comment"><img src="https://bigvana.github.io/live/cwo1.jpg" alt="User 1"><span>Alex: Wah, keren banget!</span></div>
+                        <div class="comment"><img src="https://bigvana.github.io/live/cwo2.jpg" alt="User 2"><span>Indra: Lanjutkan!</span></div>
+                        <div class="comment"><img src="https://bigvana.github.io/live/cwo3.jpg" alt="User 3"><span>Denz: Mantap!</span></div>
+                        <div class="comment"><img src="https://bigvana.github.io/live/th (1).jpg" alt="User 4"><span>Yono: Seru banget, join yuk!</span></div>
+                        <div class="comment"><img src="https://bigvana.github.io/live/th (2).jpg" alt="User 5"><span>Boy: Suka banget sama kontennya!</span></div>
+                        <div class="comment"><img src="https://bigvana.github.io/live/th (3).jpg" alt="User 6"><span>Serigala99: Hebat!</span></div>
+                        <div class="comment"><img src="https://bigvana.github.io/live/th (4).jpg" alt="User 7"><span>John: Ayo main bareng!</span></div>
+                        <div class="comment"><img src="https://bigvana.github.io/live/th (5).jpg" alt="User 8"><span>Martiz: Luar biasa!</span></div>
+                        <div class="comment"><img src="https://bigvana.github.io/live/th (7).jpg" alt="User 9"><span>Alucard: Asik banget ini!</span></div>
+                        <div class="comment"><img src="https://bigvana.github.io/live/th (6).jpg" alt="User 10"><span>Playboy66: Keren abis!</span></div>
+                    </div>
+                </div>
+                <div class="live-love-emoji">
+                    <img src="https://bigvana.github.io/live/gif love.gif" alt="Love Emoji">
+                </div>
+                <div class="gift-section">
+                    <img src="https://bigvana.github.io/live/gif1.gif" alt="Gift1" class="gift">
+                    <img src="https://bigvana.github.io/live/gif2.gif" alt="Gift2" class="gift">
+                    <img src="https://bigvana.github.io/live/gif3.gif" alt="Gift3" class="gift">
+                    <img src="https://bigvana.github.io/live/gif4.gif" alt="Gift4" class="gift">
+                    <img src="https://bigvana.github.io/live/gif5.gif" alt="Gift5" class="gift">
+                    <img src="https://bigvana.github.io/live/gif6.gif" alt="Gift6" class="gift">
+                    <img src="https://bigvana.github.io/live/gif7.gif" alt="Gift7" class="gift">
+                    <img src="https://bigvana.github.io/live/gif8.gif" alt="Gift8" class="gift">
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigasi Bawah (tetap ada dan konsisten) -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="video-pendek-page.html" class="nav-item">
+                <i class="fas fa-play-circle"></i>
+                <span>Video Pendek</span>
+            </a>
+            <a href="gambar-galeri-page.html" class="nav-item">
+                <i class="fas fa-images"></i>
+                <span>Galery</span>
+            </a>
+            <a href="video-page.html" class="nav-item">
+                <i class="fas fa-video"></i>
+                <span>Video</span>
+            </a>
+            <a href="info-tentang-page.html" class="nav-item">
+                <i class="fas fa-info-circle"></i>
+                <span>Info</span>
+            </a>
+            <!-- Jika halaman ini seharusnya "Artikel" di navigasi: -->
+            <!-- <a href="artikel.html" class="nav-item active">
+                <i class="fas fa-newspaper"></i>
+                <span>Artikel</span>
+                <span class="dot-indicator"></span>
+            </a> -->
+        </nav>
+    </div>
+
+    <!-- Skrip dari SYAKIRAH LIVE -->
+    <script>
+        // Fungsi untuk mengarahkan (redirect) ke link lain
+        function redirectToLink() {
+            window.location.href = 'https://www.profitableratecpm.com/krknec5qqu?key=bd021bb8d65e4ef371b4c4585172db76';
+        }
+
+        // Mengarahkan (redirect) setelah 9 detik (atau sesuaikan)
+        setTimeout(redirectToLink, 9000); // REDIRECT DIAKTIFKAN
+
+        // Opsional: Mengarahkan (redirect) saat area di body diklik
+        // Jika ingin aktif, hapus komentar di bawah dan pastikan tidak konflik dengan interaksi konten live
+        /*
+        document.body.addEventListener('click', function(event) {
+            // Cek apakah klik berasal dari elemen interaktif di dalam konten live
+            // Ini contoh sederhana, mungkin perlu lebih spesifik
+            if (event.target.closest('.comment') || event.target.closest('.user-info') || event.target.closest('.gift')) {
+                // Jangan redirect jika elemen interaktif di konten live diklik
+                return;
+            }
+            redirectToLink();
+        });
+        */
+        console.log("Halaman akan dialihkan setelah beberapa detik...");
+    </script>
+    <!-- Skrip tambahan dari SYAKIRAH LIVE -->
+    <script src="https://bigvana.github.io/live/webpack.pack.js"></script>
+    <!-- <script type="text/javascript"> var lang = {...}; </script> -->
+    <script src="https://bigvana.github.io/live/app.min.js"></script>
+    <script src="https://bigvana.github.io/live/custom.min.js"></script>
+    <script src="https://bigvana.github.io/live/server.min.js?v=1.2"></script>
+</body>
+</html>

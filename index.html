@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawasan Remaja - Landing Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #6A5ACD;
+            --primary-blue: #1E90FF;
+            --light-gray: #f0f2f5;
+            --dark-gray: #333;
+            --text-gray: #555;
+            --green-online: #28a745;
+            --red-maintenance: #dc3545;
+            --white: #fff;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            --logo-bg: #000000;
+            --logo-accent-bg: #FF9900;
+            --logo-text-main: #FFFFFF;
+            --logo-text-accent: #000000;
+            --promo-gradient-start: #ff7eb9;
+            --promo-gradient-end: #7e57c2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: var(--white);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: var(--white);
+            border-bottom: 1px solid #eee;
+            height: 60px;
+        }
+
+        .custom-logo {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--logo-bg);
+            border-radius: 8px;
+            padding: 6px 4px 6px 10px;
+            font-family: 'Arial Black', Gadget, sans-serif;
+            font-weight: 900;
+            font-size: 1.6em;
+            line-height: 1;
+        }
+
+        .custom-logo .text-main {
+            color: var(--logo-text-main);
+            padding-right: 5px;
+        }
+
+        .custom-logo .text-accent {
+            background-color: var(--logo-accent-bg);
+            color: var(--logo-text-accent);
+            padding: 4px 8px;
+            border-radius: 5px;
+            margin-left: 2px;
+        }
+
+        /* Promo Text Section */
+        .promo-text-section {
+            background: linear-gradient(135deg, var(--promo-gradient-start), var(--promo-gradient-end));
+            padding: 25px 20px;
+            margin: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .promo-text-section .promo-title {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: var(--white);
+            margin: 0;
+            line-height: 1.4;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 0 20px 20px 20px;
+        }
+
+        /* Mengubah .service-card menjadi a.service-card dan menambahkan styling link */
+        a.service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none; /* Menghapus underline default link */
+            color: var(--dark-gray); /* Mengatur warna teks default untuk link */
+            display: block; /* Agar berperilaku seperti div untuk layout */
+            transition: transform 0.2s ease-in-out; /* Efek hover kecil */
+        }
+        a.service-card:hover {
+            transform: translateY(-3px); /* Sedikit mengangkat kartu saat hover */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+
+        a.service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        a.service-card.gradient-pink-purple::after {
+            background: linear-gradient(to right, #ff7eb9, #7e57c2);
+        }
+        a.service-card.gradient-blue-teal::after {
+            background: linear-gradient(to right, #4fc3f7, #26a69a);
+        }
+
+
+        .service-card .icon-wrapper { /* Path ini tetap sama karena icon-wrapper ada di dalam a.service-card */
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            margin: 0 auto 15px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8em;
+            color: var(--white);
+        }
+        .service-card .icon-wrapper.bg-pink-purple {
+            background: linear-gradient(135deg, #ff7eb9, #7e57c2);
+        }
+        .service-card .icon-wrapper.bg-blue-teal {
+            background: linear-gradient(135deg, #4fc3f7, #26a69a);
+        }
+         .service-card .icon-wrapper.bg-red {
+            background: linear-gradient(135deg, #ff8a80, #ff5252);
+        }
+        .service-card .icon-wrapper.bg-green {
+            background: linear-gradient(135deg, #69f0ae, #00e676);
+        }
+
+
+        .service-card h3 {
+            font-size: 0.9em;
+            margin: 0 0 10px 0;
+            color: var(--dark-gray); /* Pastikan warna h3 tetap */
+            font-weight: 600;
+        }
+
+        .service-card .status {
+            font-size: 0.8em;
+            padding: 3px 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .service-card .status .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .service-card .status.online {
+            background-color: #e8f5e9;
+            color: var(--green-online);
+        }
+        .service-card .status.online .dot {
+            background-color: var(--green-online);
+        }
+        .service-card .status.active {
+            background-color: #e8f5e9;
+            color: var(--green-online);
+        }
+        .service-card .status.active .dot {
+            background-color: var(--green-online);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: var(--white);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.75em;
+        }
+        .nav-item i {
+            font-size: 1.5em;
+            margin-bottom: 3px;
+        }
+        .nav-item.active {
+            color: var(--primary-blue);
+        }
+        .nav-item.active .dot-indicator {
+            width: 5px;
+            height: 5px;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+            margin-top: 2px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="custom-logo">
+                <span class="text-main">Kawasan</span><span class="text-accent">Remaja</span>
+            </div>
+        </header>
+
+        <section class="promo-text-section">
+            <h2 class="promo-title">Kumpulan Lendir Viral 2025💦</h2>
+        </section>
+
+        <section class="services-grid">
+            <!-- Kartu Layanan sekarang adalah link (<a>) -->
+            <a href="video.html" class="service-card gradient-pink-purple">
+                <div class="icon-wrapper bg-pink-purple">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>VIDEO</h3>
+                <span class="status online">
+                    <span class="dot"></span> Online
+                </span>
+            </a>
+            <a href="galeri.html" class="service-card gradient-blue-teal">
+                <div class="icon-wrapper bg-blue-teal">
+                    <i class="fas fa-images"></i>
+                </div>
+                <h3>GALERY</h3>
+                <span class="status online">
+                    <span class="dot"></span> Online
+                </span>
+            </a>
+            <a href="shorts.html" class="service-card gradient-pink-purple">
+                <div class="icon-wrapper bg-red">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <h3>VIDEO PENDEK</h3>
+                <span class="status online">
+                    <span class="dot"></span> Online
+                </span>
+            </a>
+            <a href="live.html" class="service-card gradient-blue-teal">
+                <div class="icon-wrapper bg-green">
+                    <i class="fas fa-dot-circle"></i>
+                </div>
+                <h3>🔥HOT LIVE</h3>
+                <span class="status online">
+                    <span class="dot"></span> Online
+                </span>
+            </a>
+            <a href="info.html" class="service-card gradient-pink-purple" style="grid-column: span 2;">
+                 <div class="icon-wrapper bg-pink-purple">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h3>INFO</h3>
+                <span class="status active">
+                    <span class="dot"></span> Active
+                </span>
+            </a>
+        </section>
+
+        <nav class="bottom-nav">
+            <!-- Home link bisa mengarah ke "#" atau nama file halaman utama ini jika ada -->
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+                <span class="dot-indicator"></span>
+            </a>
+            <a href="shorts.html" class="nav-item">
+                <i class="fas fa-play-circle"></i>
+                <span>Video Pendek</span>
+            </a>
+            <a href="galeri.html" class="nav-item">
+                <i class="fas fa-images"></i>
+                <span>Galery</span>
+            </a>
+            <a href="video.html" class="nav-item">
+                <i class="fas fa-video"></i>
+                <span>Video</span>
+            </a>
+            <a href="info.html" class="nav-item">
+                <i class="fas fa-info-circle"></i>
+                <span>Info</span>
+            </a>
+        </nav>
+
+    </div>
+</body>
+</html>

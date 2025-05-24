@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- SAMA DI SEMUA HALAMAN -->
+    <title>JUDUL HALAMAN SPESIFIK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === CSS DASAR & NAVIGASI (100% DARI index.html ANDA) === */
+        :root {
+            --primary-purple: #6A5ACD;
+            --primary-blue: #1E90FF;   /* Warna aktif navigasi */
+            --light-gray: #f0f2f5;   /* Background body */
+            --dark-gray: #333;      /* Warna teks umum */
+            --text-gray: #555;      /* Warna teks navigasi tidak aktif */
+            --white: #fff;          /* Background container & navigasi */
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            --logo-bg: #000000;
+            --logo-accent-bg: #FF9900;
+            --logo-text-main: #FFFFFF;
+            --logo-text-accent: #000000;
+            --promo-gradient-start: #ff7eb9;
+            --promo-gradient-end: #7e57c2;
+
+            /* Variabel untuk header halaman sekunder (info, video, gambar) */
+            /* Anda akan definisikan ini jika header halaman sekunder berbeda dari header index */
+            --header-secondary-bg: #2c3e50;
+            --header-secondary-text: #ecf0f1;
+            --header-secondary-padding: 12px 15px;
+            --header-secondary-height: 56px; /* Contoh, sesuaikan */
+            --header-back-icon-size: 1.7em;
+            --header-title-font-size: 1.15em;
+            --header-title-font-weight: 500;
+
+            /* Variabel untuk konten halaman info */
+            --cta-red: #E53935;
+            --cta-red-hover: #C62828;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            padding-bottom: 80px; /* SAMA PERSIS DENGAN index.html */
+            box-sizing: border-box; /* Tambahkan ini untuk konsistensi box model */
+        }
+
+        html { /* Tambahkan ini untuk konsistensi box model */
+            box-sizing: border-box;
+        }
+        *, *:before, *:after { /* Tambahkan ini untuk konsistensi box model */
+            box-sizing: inherit;
+        }
+
+        .container {
+            max-width: 450px; /* SAMA PERSIS DENGAN index.html */
+            margin: 0 auto;
+            background-color: var(--white);
+            min-height: 100vh; /* Memastikan konten mengisi tinggi layar minimal */
+            position: relative; /* Untuk positioning nav atau elemen lain di dalamnya */
+            display: flex; /* Untuk membuat footer (nav) menempel di bawah jika konten pendek */
+            flex-direction: column; /* Konten di atas, nav di bawah */
+        }
+
+        /* Wrapper untuk konten utama agar navigasi bisa fixed di bawah .container */
+        .main-content-wrapper {
+            flex: 1 0 auto; /* Membuat wrapper ini mengisi ruang vertikal yang tersedia */
+        }
+
+
+        /* === STYLING NAVIGASI BAWAH (100% SALINAN DARI index.html) === */
+        .bottom-nav {
+            position: fixed; /* Menempel di bawah viewport */
+            bottom: 0;
+            left: 0; /* Menempel ke kiri viewport */
+            right: 0; /* Menempel ke kanan viewport */
+            /* max-width akan diatur oleh .container tempat ia diletakkan atau secara eksplisit */
+            max-width: 450px; /* Agar sama dengan .container */
+            margin-left: auto; /* Untuk menengahkan .bottom-nav jika viewport > max-width */
+            margin-right: auto; /* Untuk menengahkan .bottom-nav jika viewport > max-width */
+            background-color: var(--white);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.75em;
+        }
+        .nav-item i {
+            font-size: 1.5em;
+            margin-bottom: 3px;
+        }
+        .nav-item.active {
+            color: var(--primary-blue);
+        }
+        .nav-item.active i {
+            color: var(--primary-blue);
+        }
+        .nav-item.active .dot-indicator {
+            width: 5px;
+            height: 5px;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+            margin-top: 2px;
+        }
+        /* === AKHIR STYLING NAVIGASI BAWAH === */
+
+        /* CSS SPESIFIK UNTUK KONTEN HALAMAN INFO (jika ini file info-page) */
+        /* Header Halaman Info (Contoh) */
+        .page-secondary-header { /* Gunakan kelas ini untuk header di info, video, gambar */
+            display: flex;
+            align-items: center;
+            padding: var(--header-secondary-padding);
+            background-color: var(--header-secondary-bg);
+            color: var(--header-secondary-text);
+            height: var(--header-secondary-height);
+            /* position: sticky; top: 0; z-index: 100; Tidak perlu sticky jika di dalam .main-content-wrapper */
+        }
+        .page-secondary-header .back-button {
+            color: var(--header-secondary-text); font-size: var(--header-back-icon-size);
+            margin-right: 15px; text-decoration: none; padding: 5px; cursor: pointer;
+            line-height: 1; display: flex; align-items: center;
+        }
+        .page-secondary-header .title {
+            font-size: var(--header-title-font-size); font-weight: var(--header-title-font-weight);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1;
+        }
+
+        .info-page-content { /* Konten spesifik halaman info */
+            padding: 30px 20px 20px 20px; /* Kurangi padding bawah karena sudah ada di body */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .custom-logo-in-content {
+            display: inline-flex; align-items: center; background-color: var(--logo-bg);
+            border-radius: 8px; padding: 6px 4px 6px 10px;
+            font-family: 'Arial Black', Gadget, sans-serif; font-weight: 900;
+            font-size: 1.8em; line-height: 1; margin-bottom: 25px;
+        }
+        .custom-logo-in-content .text-main { color: var(--logo-text-main); padding-right: 5px; }
+        .custom-logo-in-content .text-accent { background-color: var(--logo-accent-bg); color: var(--logo-text-accent); padding: 4px 8px; border-radius: 5px; margin-left: 2px; }
+        .info-page-content h1.main-greeting { font-size: 2.5em; color: var(--dark-gray); font-weight: bold; margin-top: 0; margin-bottom: 20px; }
+        .info-page-content .description-text { font-size: 1em; color: #454545; line-height: 1.7; max-width: 90%; margin: 0 auto 35px auto; }
+        .info-page-content .cta-button { display: inline-block; background-color: var(--cta-red); color: var(--white); padding: 14px 30px; border-radius: 28px; text-decoration: none; font-weight: bold; font-size: 1em; margin-bottom: 40px; transition: background-color 0.2s ease, transform 0.2s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .info-page-content .cta-button:hover { background-color: var(--cta-red-hover); transform: translateY(-2px); }
+        .info-page-content .credits-text { font-size: 0.9em; color: #777; margin-top: 20px; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content-wrapper"> <!-- Wrapper untuk konten utama -->
+            <header class="page-secondary-header"> <!-- Header Halaman Info -->
+                <a href="javascript:history.back()" class="back-button" aria-label="Kembali">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h1 class="title" id="pageTitle">Info Aplikasi</h1>
+            </header>
+
+            <main class="info-page-content"> <!-- Konten Spesifik Halaman Info -->
+                <div class="custom-logo-in-content">
+                    <span class="text-main">Kawasan</span><span class="text-accent">Remaja</span>
+                </div>
+                <h1 class="main-greeting">Selamat Datang!</h1>
+                <p class="description-text">
+                    Ini adalah platform keren untuk<br>
+                    menemukan konten video menarik.<br>
+                    Jelajahi, berinteraksi, dan bagikan momen<br>
+                    Anda!
+                </p>
+                <a href="index.html" class="cta-button">Lihat Penawaran Lainnya</a>
+                <p class="credits-text">
+                    Dibuat oleh Kawasan Dewasa
+                </p>
+            </main>
+        </div> <!-- Akhir .main-content-wrapper -->
+
+        <!-- Navigasi Bawah HTML (Struktur Sama Persis) -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="shorts.html" class="nav-item">
+                <i class="fas fa-play-circle"></i>
+                <span>Video Pendek</span>
+            </a>
+            <a href="galeri.html" class="nav-item">
+                <i class="fas fa-images"></i>
+                <span>Galery</span>
+            </a>
+            <a href="video.html" class="nav-item">
+                <i class="fas fa-video"></i>
+                <span>Video</span>
+            </a>
+            <a href="info.html" class="nav-item active"> <!-- ITEM INI AKTIF -->
+                <i class="fas fa-info-circle"></i>
+                <span>Info</span>
+                <span class="dot-indicator"></span>
+            </a>
+        </nav>
+    </div> <!-- Akhir .container -->
+
+    <script>
+        // Tidak ada JavaScript yang kompleks untuk halaman ini saat ini
+    </script>
+</body>
+</html>

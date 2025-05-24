@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Kumpulan Video Pendek</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === CSS LENGKAP DIAMBIL DARI index.html ANDA UNTUK BAGIAN DASAR & NAVIGASI === */
+        :root {
+            --primary-purple: #6A5ACD;
+            --primary-blue: #1E90FF;
+            --light-gray: #f0f2f5;
+            --dark-gray: #333;
+            --text-gray: #555;
+            --green-online: #28a745;
+            --red-maintenance: #dc3545;
+            --white: #fff;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            --logo-bg: #000000;
+            --logo-accent-bg: #FF9900;
+            --logo-text-main: #FFFFFF;
+            --logo-text-accent: #000000;
+            --promo-gradient-start: #ff7eb9;
+            --promo-gradient-end: #7e57c2;
+            /* Header khusus untuk halaman sekunder */
+            --header-bg-secondary: #2c3e50;
+            --header-text-secondary: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            padding-bottom: 80px; /* SAMA PERSIS DENGAN index.html */
+        }
+
+        .container { /* MENGGUNAKAN KELAS DARI INDEX.HTML */
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: var(--white);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Header Halaman Ini */
+        .page-secondary-header { /* Nama kelas header spesifik */
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: var(--header-bg-secondary);
+            color: var(--header-text-secondary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .page-secondary-header .back-button {
+            color: var(--header-text-secondary);
+            font-size: 1.7em;
+            margin-right: 15px;
+            text-decoration: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .page-secondary-header .title {
+            font-size: 1.15em;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Konten Halaman Ini */
+        .content-secondary-area { /* Nama kelas konten spesifik */
+            padding: 15px;
+        }
+
+        /* Galeri Thumbnail (Mirip video-page.html) */
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+            gap: 12px;
+        }
+        .thumbnail-item {
+            background-color: var(--white);
+            border-radius: 6px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .thumbnail-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+        }
+        .thumbnail-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 9 / 16; /* Thumbnail potrait untuk video pendek */
+            object-fit: cover;
+            background-color: #e9ecef;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .thumbnail-item .thumbnail-info {
+            padding: 10px 12px;
+            flex-grow: 1;
+        }
+        .thumbnail-item .thumbnail-info p {
+            font-size: 0.875rem; margin: 0; font-weight: 500; color: #212529;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+            overflow: hidden; text-overflow: ellipsis; min-height: 2.5em; line-height: 1.25em;
+        }
+
+        /* Video Player Container */
+        .video-player-container {
+            display: none; /* Awalnya tersembunyi */
+            background-color: var(--white);
+            padding: 10px 0;
+            margin-top: 10px;
+        }
+        .video-player-container .player-controls {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .video-player-container .back-to-gallery-button {
+            background-color: var(--primary-blue); color: white; padding: 10px 18px;
+            border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em; font-weight: 500;
+        }
+        .video-iframe-wrapper {
+            position: relative; width: 100%; margin: 0 auto;
+            /* Rasio untuk video pendek, mungkin lebih baik 9:16 atau sesuaikan */
+            padding-top: 177.78%; /* Rasio potrait 9:16 */
+            background-color: #000; border-radius: 5px; overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .video-iframe-wrapper iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+
+        /* === STYLING NAVIGASI BAWAH (DIAMBIL LANGSUNG DARI index.html) === */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            max-width: 450px; margin: 0 auto; background-color: var(--white);
+            display: flex; justify-content: space-around; padding: 10px 0;
+            border-top: 1px solid #eee; box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            color: var(--text-gray); text-decoration: none; font-size: 0.75em;
+        }
+        .nav-item i { font-size: 1.5em; margin-bottom: 3px; }
+        .nav-item.active { color: var(--primary-blue); }
+        .nav-item.active i { color: var(--primary-blue); }
+        .nav-item.active .dot-indicator {
+            width: 5px; height: 5px; background-color: var(--primary-blue);
+            border-radius: 50%; margin-top: 2px;
+        }
+        /* === AKHIR STYLING NAVIGASI BAWAH === */
+    </style>
+</head>
+<body>
+    <div class="container"> <!-- Menggunakan kelas .container dari index.html -->
+        <header class="page-secondary-header">
+            <a id="headerBackButton" class="back-button" aria-label="Kembali">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1 class="title" id="pageTitle">Video Pendek</h1> <!-- Judul Halaman Diubah -->
+        </header>
+
+        <main class="content-secondary-area">
+            <div id="galleryView" class="thumbnail-gallery">
+                <!-- 6 Item Video Pendek (Gunakan URL dan Thumbnail yang Sesuai) -->
+                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_1" data-video-title="Judul Video Pendek 1">
+                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_1.jpg" alt="Video Pendek 1">
+                    <div class="thumbnail-info"><p>Judul Video Pendek 1</p></div>
+                </article>
+                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_2" data-video-title="Judul Video Pendek 2">
+                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_2.jpg" alt="Video Pendek 2">
+                    <div class="thumbnail-info"><p>Judul Video Pendek 2</p></div>
+                </article>
+                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_3" data-video-title="Judul Video Pendek 3">
+                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_3.jpg" alt="Video Pendek 3">
+                    <div class="thumbnail-info"><p>Judul Video Pendek 3</p></div>
+                </article>
+                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_4" data-video-title="Judul Video Pendek 4">
+                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_4.jpg" alt="Video Pendek 4">
+                    <div class="thumbnail-info"><p>Judul Video Pendek 4</p></div>
+                </article>
+                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_5" data-video-title="Judul Video Pendek 5">
+                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_5.jpg" alt="Video Pendek 5">
+                    <div class="thumbnail-info"><p>Judul Video Pendek 5</p></div>
+                </article>
+                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_6" data-video-title="Judul Video Pendek 6">
+                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_6.jpg" alt="Video Pendek 6">
+                    <div class="thumbnail-info"><p>Judul Video Pendek 6</p></div>
+                </article>
+            </div>
+
+            <div id="playerView" class="video-player-container">
+                <div class="player-controls">
+                    <button class="back-to-gallery-button" id="backToGalleryBtnFromPlayer">
+                        <i class="fas fa-th-large"></i> Kembali ke Galeri
+                    </button>
+                </div>
+                <div class="video-iframe-wrapper">
+                    <iframe id="videoPlayerIframe"
+                            src=""
+                            title="Video Player"
+                            frameborder="0"
+                            allowfullscreen
+                            allow="encrypted-media; picture-in-picture"
+                            sandbox="allow-scripts allow-same-origin allow-presentation allow-forms">
+                    </iframe>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="shorts.html" class="nav-item active"> <!-- ITEM INI AKTIF -->
+            <i class="fas fa-play-circle"></i>
+            <span>Video Pendek</span>
+            <span class="dot-indicator"></span>
+        </a>
+        <a href="galeri.html" class="nav-item">
+            <i class="fas fa-images"></i>
+            <span>Galery</span>
+        </a>
+        <a href="video.html" class="nav-item">
+            <i class="fas fa-video"></i>
+            <span>Video</span>
+        </a>
+        <a href="info.html" class="nav-item">
+            <i class="fas fa-info-circle"></i>
+            <span>Info</span>
+        </a>
+    </nav>
+
+    <script>
+        // JavaScript SAMA PERSIS seperti di video-page.html sebelumnya
+        document.addEventListener('DOMContentLoaded', function () {
+            const galleryView = document.getElementById('galleryView');
+            const playerView = document.getElementById('playerView');
+            const iframe = document.getElementById('videoPlayerIframe');
+            const backToGalleryBtnFromPlayer = document.getElementById('backToGalleryBtnFromPlayer');
+            const pageTitleElement = document.getElementById('pageTitle');
+            const headerBackButton = document.querySelector('.page-secondary-header .back-button'); // Disesuaikan dengan kelas header
+            const thumbnailItems = document.querySelectorAll('.thumbnail-item');
+
+            function switchToPlayerView(videoSrc, videoTitle) {
+                if (videoSrc && videoSrc.trim() !== "") {
+                    iframe.setAttribute('src', videoSrc);
+                    galleryView.style.display = 'none';
+                    playerView.style.display = 'block';
+                    if (pageTitleElement) pageTitleElement.textContent = videoTitle;
+                } else {
+                    console.error("PLAYER: Atribut data-video-src kosong atau tidak valid!");
+                }
+            }
+
+            function switchToGalleryView() {
+                iframe.setAttribute('src', '');
+                playerView.style.display = 'none';
+                galleryView.style.display = 'grid';
+                if (pageTitleElement) pageTitleElement.textContent = "Video Pendek"; // Sesuaikan judul galeri
+            }
+
+            thumbnailItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const videoSrc = this.getAttribute('data-video-src');
+                    const videoTitle = this.getAttribute('data-video-title') || "Memutar Video";
+                    switchToPlayerView(videoSrc, videoTitle);
+                });
+            });
+
+            if(backToGalleryBtnFromPlayer) {
+                backToGalleryBtnFromPlayer.addEventListener('click', switchToGalleryView);
+            }
+
+            if(headerBackButton) {
+                headerBackButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    if (playerView && getComputedStyle(playerView).display !== 'none') {
+                        switchToGalleryView();
+                    } else {
+                        history.back();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
