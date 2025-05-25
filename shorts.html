@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Kumpulan Video Pargoy</title>
+    <title>Kumpulan Video Pendek</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* === CSS LENGKAP DIAMBIL DARI index.html ANDA UNTUK BAGIAN DASAR & NAVIGASI === */
@@ -132,11 +132,11 @@
         }
         .video-iframe-wrapper {
             position: relative; width: 100%; margin: 0 auto;
-            /* Rasio untuk video pendek, mungkin lebih baik 9:16 atau sesuaikan */
             padding-top: 177.78%; /* Rasio potrait 9:16 */
             background-color: #000; border-radius: 5px; overflow: hidden;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
         }
+        /* Gaya untuk iframe di dalam wrapper akan diatur oleh JS atau oleh embed code itu sendiri jika sudah 100% width/height */
         .video-iframe-wrapper iframe {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
@@ -169,35 +169,54 @@
             <a id="headerBackButton" class="back-button" aria-label="Kembali">
                 <i class="fas fa-arrow-left"></i>
             </a>
-            <h1 class="title" id="pageTitle">Kumpulan Video Pargoy</h1> <!-- Judul Halaman Diubah -->
+            <h1 class="title" id="pageTitle">Video Pendek</h1> <!-- Judul Halaman Diubah -->
         </header>
 
         <main class="content-secondary-area">
             <div id="galleryView" class="thumbnail-gallery">
-                <!-- 6 Item Video Pendek (Gunakan URL dan Thumbnail yang Sesuai) -->
-                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_1" data-video-title="Judul Video Pendek 1">
-                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_1.jpg" alt="Video Pendek 1">
-                    <div class="thumbnail-info"><p>Judul Video Pendek 1</p></div>
+                <!-- 
+                    PENTING: Ganti data-iframe-embed dengan KODE IFRAME LENGKAP.
+                    Contoh untuk YouTube Short (sesuaikan ID video):
+                    data-iframe-embed='<iframe width="100%" height="100%" src="https://www.youtube.com/embed/SHORT_VIDEO_ID_ANDA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+                    
+                    Contoh untuk Google Drive (pastikan link adalah /preview dan file dapat di-embed):
+                    data-iframe-embed='<iframe src="https://drive.google.com/file/d/1-z1vP6bcfIWY5ZlLKSswsg-QZfhCPdgE/preview" width="100%" height="100%" allow="autoplay"></iframe>'
+                -->
+                <article class="thumbnail-item" 
+                         data-iframe-embed='<iframe src="https://drive.google.com/file/d/1-z1vP6bcfIWY5ZlLKSswsg-QZfhCPdgE/preview" width="100%" height="100%" allow="autoplay" style="border:0;"></iframe>' 
+                         data-video-title="Contoh Google Drive Short">
+                    <img src="https://via.placeholder.com/270x480.png/2c3e50/ecf0f1?text=Short+1" alt="Video Pendek 1">
+                    <div class="thumbnail-info"><p>Contoh Google Drive Short</p></div>
                 </article>
-                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_2" data-video-title="Judul Video Pendek 2">
-                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_2.jpg" alt="Video Pendek 2">
-                    <div class="thumbnail-info"><p>Judul Video Pendek 2</p></div>
+                <article class="thumbnail-item" 
+                         data-iframe-embed='<iframe width="100%" height="100%" src="https://www.youtube.com/embed/rE3j_ADV6qc" title="Contoh YouTube Short" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border:0;"></iframe>' 
+                         data-video-title="Contoh YouTube Short 2">
+                    <img src="https://via.placeholder.com/270x480.png/6A5ACD/FFFFFF?text=Short+2" alt="Video Pendek 2">
+                    <div class="thumbnail-info"><p>Contoh YouTube Short 2</p></div>
                 </article>
-                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_3" data-video-title="Judul Video Pendek 3">
-                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_3.jpg" alt="Video Pendek 3">
-                    <div class="thumbnail-info"><p>Judul Video Pendek 3</p></div>
+                <article class="thumbnail-item" 
+                         data-iframe-embed='<iframe width="100%" height="100%" src="https://www.youtube.com/embed/mNEz_m0fnMA" title="Contoh YouTube Short 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border:0;"></iframe>'
+                         data-video-title="Contoh YouTube Short 3">
+                    <img src="https://via.placeholder.com/270x480.png/1E90FF/FFFFFF?text=Short+3" alt="Video Pendek 3">
+                    <div class="thumbnail-info"><p>Contoh YouTube Short 3</p></div>
                 </article>
-                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_4" data-video-title="Judul Video Pendek 4">
-                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_4.jpg" alt="Video Pendek 4">
-                    <div class="thumbnail-info"><p>Judul Video Pendek 4</p></div>
+                <article class="thumbnail-item" 
+                         data-iframe-embed='<!-- KODE IFRAME VIDEO PENDEK 4 DISINI -->' 
+                         data-video-title="Judul Video Pendek 4">
+                    <img src="https://via.placeholder.com/270x480.png/FF9900/000000?text=Short+4" alt="Video Pendek 4">
+                    <div class="thumbnail-info"><p>Judul Video Pendek 4 (Belum Ada Embed)</p></div>
                 </article>
-                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_5" data-video-title="Judul Video Pendek 5">
-                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_5.jpg" alt="Video Pendek 5">
-                    <div class="thumbnail-info"><p>Judul Video Pendek 5</p></div>
+                <article class="thumbnail-item" 
+                         data-iframe-embed='<!-- KODE IFRAME VIDEO PENDEK 5 DISINI -->' 
+                         data-video-title="Judul Video Pendek 5">
+                    <img src="https://via.placeholder.com/270x480.png/28a745/FFFFFF?text=Short+5" alt="Video Pendek 5">
+                    <div class="thumbnail-info"><p>Judul Video Pendek 5 (Belum Ada Embed)</p></div>
                 </article>
-                <article class="thumbnail-item" data-video-src="URL_VIDEO_PENDEK_6" data-video-title="Judul Video Pendek 6">
-                    <img src="PATH_THUMBNAIL_VIDEO_PENDEK_6.jpg" alt="Video Pendek 6">
-                    <div class="thumbnail-info"><p>Judul Video Pendek 6</p></div>
+                <article class="thumbnail-item" 
+                         data-iframe-embed='<!-- KODE IFRAME VIDEO PENDEK 6 DISINI -->' 
+                         data-video-title="Judul Video Pendek 6">
+                    <img src="https://via.placeholder.com/270x480.png/dc3545/FFFFFF?text=Short+6" alt="Video Pendek 6">
+                    <div class="thumbnail-info"><p>Judul Video Pendek 6 (Belum Ada Embed)</p></div>
                 </article>
             </div>
 
@@ -207,15 +226,8 @@
                         <i class="fas fa-th-large"></i> Kembali ke Galeri
                     </button>
                 </div>
-                <div class="video-iframe-wrapper">
-                    <iframe id="videoPlayerIframe"
-                            src=""
-                            title="Video Player"
-                            frameborder="0"
-                            allowfullscreen
-                            allow="encrypted-media; picture-in-picture"
-                            sandbox="allow-scripts allow-same-origin allow-presentation allow-forms">
-                    </iframe>
+                <div class="video-iframe-wrapper" id="videoIframeWrapper">
+                    <!-- Iframe akan dimasukkan oleh JavaScript di sini -->
                 </div>
             </div>
         </main>
@@ -228,7 +240,7 @@
         </a>
         <a href="shorts.html" class="nav-item active"> <!-- ITEM INI AKTIF -->
             <i class="fas fa-play-circle"></i>
-            <span>Video Pargoy</span>
+            <span>Video Pendek</span>
             <span class="dot-indicator"></span>
         </a>
         <a href="galeri.html" class="nav-item">
@@ -246,29 +258,61 @@
     </nav>
 
     <script>
-        // JavaScript SAMA PERSIS seperti di video-page.html sebelumnya
         document.addEventListener('DOMContentLoaded', function () {
             const galleryView = document.getElementById('galleryView');
             const playerView = document.getElementById('playerView');
-            const iframe = document.getElementById('videoPlayerIframe');
+            const iframeWrapper = document.getElementById('videoIframeWrapper'); // Target wrapper
             const backToGalleryBtnFromPlayer = document.getElementById('backToGalleryBtnFromPlayer');
             const pageTitleElement = document.getElementById('pageTitle');
-            const headerBackButton = document.querySelector('.page-secondary-header .back-button'); // Disesuaikan dengan kelas header
+            const headerBackButton = document.querySelector('.page-secondary-header .back-button');
             const thumbnailItems = document.querySelectorAll('.thumbnail-item');
 
-            function switchToPlayerView(videoSrc, videoTitle) {
-                if (videoSrc && videoSrc.trim() !== "") {
-                    iframe.setAttribute('src', videoSrc);
+            // Simpan HTML placeholder iframe asli jika Anda ingin mengembalikannya
+            // atau biarkan kosong dan hanya hapus saat kembali ke galeri.
+            // Untuk kesederhanaan, kita akan mengosongkannya.
+            // Jika Anda memiliki iframe default di HTML, simpan innerHTML-nya di sini.
+            // const originalIframePlaceholderHTML = iframeWrapper.innerHTML; 
+
+            function switchToPlayerView(iframeEmbedCode, videoTitle) {
+                if (iframeEmbedCode && iframeEmbedCode.trim() !== "" && iframeEmbedCode.startsWith('<iframe')) {
+                    iframeWrapper.innerHTML = iframeEmbedCode; // Masukkan kode iframe dari atribut data
+
+                    // Coba atur gaya iframe yang baru dimasukkan agar responsif
+                    const newIframe = iframeWrapper.querySelector('iframe');
+                    if (newIframe) {
+                        // Gaya ini memastikan iframe mengisi wrapper yang menjaga aspek rasio
+                        // Beberapa embed code (seperti YouTube) mungkin sudah benar, tapi ini sebagai fallback.
+                        newIframe.style.position = 'absolute';
+                        newIframe.style.top = '0';
+                        newIframe.style.left = '0';
+                        newIframe.style.width = '100%';
+                        newIframe.style.height = '100%';
+                        newIframe.style.border = '0'; // Hapus border default jika ada
+                    } else {
+                        console.error("PLAYER: Tidak ada tag <iframe> ditemukan dalam data-iframe-embed.");
+                        // Bisa tambahkan logika untuk menampilkan pesan error ke pengguna
+                        iframeWrapper.innerHTML = '<p style="color:red; text-align:center; padding-top: 50%;">Error: Kode video tidak valid.</p>';
+                    }
+                    
                     galleryView.style.display = 'none';
                     playerView.style.display = 'block';
                     if (pageTitleElement) pageTitleElement.textContent = videoTitle;
+
                 } else {
-                    console.error("PLAYER: Atribut data-video-src kosong atau tidak valid!");
+                    console.error("PLAYER: Atribut data-iframe-embed kosong atau tidak valid!");
+                    // Tampilkan pesan error jika kode embed tidak ada atau tidak dimulai dengan <iframe
+                    iframeWrapper.innerHTML = '<p style="color:red; text-align:center; padding-top: 50%;">Error: Video tidak dapat dimuat.</p>';
+                    galleryView.style.display = 'none'; // Sembunyikan galeri
+                    playerView.style.display = 'block'; // Tampilkan area player (dengan pesan error)
+                    if (pageTitleElement) pageTitleElement.textContent = "Error Memuat Video";
+
                 }
             }
 
             function switchToGalleryView() {
-                iframe.setAttribute('src', '');
+                iframeWrapper.innerHTML = ''; // Kosongkan wrapper iframe
+                // Atau jika Anda menyimpan placeholder: iframeWrapper.innerHTML = originalIframePlaceholderHTML;
+                
                 playerView.style.display = 'none';
                 galleryView.style.display = 'grid';
                 if (pageTitleElement) pageTitleElement.textContent = "Video Pendek"; // Sesuaikan judul galeri
@@ -276,9 +320,17 @@
 
             thumbnailItems.forEach(item => {
                 item.addEventListener('click', function () {
-                    const videoSrc = this.getAttribute('data-video-src');
+                    const iframeEmbedCode = this.getAttribute('data-iframe-embed');
                     const videoTitle = this.getAttribute('data-video-title') || "Memutar Video";
-                    switchToPlayerView(videoSrc, videoTitle);
+                    
+                    // Cek sederhana apakah itu komentar placeholder
+                    if (iframeEmbedCode && iframeEmbedCode.trim().startsWith('<!--')) {
+                        alert('Video ini belum memiliki kode embed yang valid.');
+                        console.warn('PLAYER: Kode embed video masih berupa placeholder HTML comment.');
+                        return; // Jangan lanjutkan jika masih placeholder
+                    }
+
+                    switchToPlayerView(iframeEmbedCode, videoTitle);
                 });
             });
 
@@ -292,7 +344,14 @@
                     if (playerView && getComputedStyle(playerView).display !== 'none') {
                         switchToGalleryView();
                     } else {
-                        history.back();
+                        // Coba kembali ke index.html jika tidak ada history lain atau jika history.length <= 2
+                        // (mungkin 1 untuk halaman saat ini, 1 untuk halaman sebelumnya)
+                        // Atau selalu kembali ke index.html dari halaman ini jika itu perilaku yang diinginkan
+                        if (window.history.length <= 2 || document.referrer.includes('index.html') || !document.referrer) {
+                            window.location.href = 'index.html';
+                        } else {
+                            history.back();
+                        }
                     }
                 });
             }
