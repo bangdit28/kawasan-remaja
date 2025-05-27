@@ -86,15 +86,31 @@
 
         /* === STYLING NAVIGASI BAWAH (100% SAMA DENGAN index.html) === */
         .bottom-nav {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            max-width: 450px; margin: 0 auto; background-color: var(--white);
-            display: flex; justify-content: space-around; padding: 10px 0;
-            border-top: 1px solid #eee; box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: var(--white);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
             z-index: 1000;
         }
         .nav-item {
-            display: flex; flex-direction: column; align-items: center;
-            color: var(--text-gray); text-decoration: none; font-size: 0.75em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.75em;
+            flex-grow: 1;
+            flex-basis: 0;
+            text-align: center;
+	
         }
         .nav-item i { font-size: 1.5em; margin-bottom: 3px; }
         .nav-item.active { color: var(--primary-blue); }
