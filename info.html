@@ -71,14 +71,12 @@
 
         /* === STYLING NAVIGASI BAWAH (100% SALINAN DARI index.html) === */
         .bottom-nav {
-            position: fixed; /* Menempel di bawah viewport */
+            position: fixed;
             bottom: 0;
-            left: 0; /* Menempel ke kiri viewport */
-            right: 0; /* Menempel ke kanan viewport */
-            /* max-width akan diatur oleh .container tempat ia diletakkan atau secara eksplisit */
-            max-width: 450px; /* Agar sama dengan .container */
-            margin-left: auto; /* Untuk menengahkan .bottom-nav jika viewport > max-width */
-            margin-right: auto; /* Untuk menengahkan .bottom-nav jika viewport > max-width */
+            left: 0;
+            right: 0;
+            max-width: 450px;
+            margin: 0 auto;
             background-color: var(--white);
             display: flex;
             justify-content: space-around;
@@ -94,6 +92,9 @@
             color: var(--text-gray);
             text-decoration: none;
             font-size: 0.75em;
+            flex-grow: 1;
+            flex-basis: 0;
+            text-align: center;
         }
         .nav-item i {
             font-size: 1.5em;
