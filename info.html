@@ -23,7 +23,6 @@
             --promo-gradient-end: #7e57c2;
 
             /* Variabel untuk header halaman sekunder (info, video, gambar) */
-            /* Anda akan definisikan ini jika header halaman sekunder berbeda dari header index */
             --header-secondary-bg: #2c3e50;
             --header-secondary-text: #ecf0f1;
             --header-secondary-padding: 12px 15px;
@@ -35,6 +34,12 @@
             /* Variabel untuk konten halaman info */
             --cta-red: #E53935;
             --cta-red-hover: #C62828;
+
+            /* Variabel untuk ikon sosial (DITAMBAHKAN) */
+            --social-icon-color: var(--cta-red); 
+            --social-icon-bg: rgba(229, 57, 53, 0.08); 
+            --social-icon-bg-hover: rgba(229, 57, 53, 0.15);
+            --join-channel-text-color: var(--dark-gray);
         }
 
         body {
@@ -66,6 +71,8 @@
         /* Wrapper untuk konten utama agar navigasi bisa fixed di bawah .container */
         .main-content-wrapper {
             flex: 1 0 auto; /* Membuat wrapper ini mengisi ruang vertikal yang tersedia */
+            display: flex; /* Untuk mengatur page-footer-elements ke bawah */
+            flex-direction: column; /* Agar konten utama dan footer elements bertumpuk */
         }
 
 
@@ -115,16 +122,14 @@
         }
         /* === AKHIR STYLING NAVIGASI BAWAH === */
 
-        /* CSS SPESIFIK UNTUK KONTEN HALAMAN INFO (jika ini file info-page) */
-        /* Header Halaman Info (Contoh) */
-        .page-secondary-header { /* Gunakan kelas ini untuk header di info, video, gambar */
+        /* CSS SPESIFIK UNTUK KONTEN HALAMAN INFO */
+        .page-secondary-header {
             display: flex;
             align-items: center;
             padding: var(--header-secondary-padding);
             background-color: var(--header-secondary-bg);
             color: var(--header-secondary-text);
             height: var(--header-secondary-height);
-            /* position: sticky; top: 0; z-index: 100; Tidak perlu sticky jika di dalam .main-content-wrapper */
         }
         .page-secondary-header .back-button {
             color: var(--header-secondary-text); font-size: var(--header-back-icon-size);
@@ -136,12 +141,13 @@
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1;
         }
 
-        .info-page-content { /* Konten spesifik halaman info */
-            padding: 30px 20px 20px 20px; /* Kurangi padding bawah karena sudah ada di body */
+        .info-page-content {
+            padding: 30px 20px 10px 20px; /* Padding bawah disesuaikan karena credits pindah */
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
+            flex-grow: 1; /* Agar konten mengisi ruang jika pendek */
         }
         .custom-logo-in-content {
             display: inline-flex; align-items: center; background-color: var(--logo-bg);
@@ -153,9 +159,61 @@
         .custom-logo-in-content .text-accent { background-color: var(--logo-accent-bg); color: var(--logo-text-accent); padding: 4px 8px; border-radius: 5px; margin-left: 2px; }
         .info-page-content h1.main-greeting { font-size: 2.5em; color: var(--dark-gray); font-weight: bold; margin-top: 0; margin-bottom: 20px; }
         .info-page-content .description-text { font-size: 1em; color: #454545; line-height: 1.7; max-width: 90%; margin: 0 auto 35px auto; }
-        .info-page-content .cta-button { display: inline-block; background-color: var(--cta-red); color: var(--white); padding: 14px 30px; border-radius: 28px; text-decoration: none; font-weight: bold; font-size: 1em; margin-bottom: 40px; transition: background-color 0.2s ease, transform 0.2s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .info-page-content .cta-button { display: inline-block; background-color: var(--cta-red); color: var(--white); padding: 14px 30px; border-radius: 28px; text-decoration: none; font-weight: bold; font-size: 1em; /* margin-bottom diatur oleh elemen berikutnya */ transition: background-color 0.2s ease, transform 0.2s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .info-page-content .cta-button:hover { background-color: var(--cta-red-hover); transform: translateY(-2px); }
-        .info-page-content .credits-text { font-size: 0.9em; color: #777; margin-top: 20px; }
+        
+        /* Styling untuk teks "Join Channel" (DITAMBAHKAN) */
+        .join-channel-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--join-channel-text-color);
+            margin-top: 35px; /* Jarak dari tombol "Lihat Penawaran" */
+            margin-bottom: 15px; /* Jarak ke ikon sosial */
+        }
+
+        /* CSS UNTUK SOSIAL ICON DI HALAMAN INFO (DITAMBAHKAN) */
+        .social-icons-container-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 30px; /* Jarak sebelum elemen footer, sesuaikan jika perlu */
+        }
+        .social-icons { 
+            display: flex;
+            gap: 20px;    
+        }
+        .social-icons .icon-circle {
+            background-color: var(--social-icon-bg);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--social-icon-color);
+            text-decoration: none;
+            font-size: 20px; 
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+        .social-icons .icon-circle:hover {
+            background-color: var(--social-icon-bg-hover);
+            transform: translateY(-2px) scale(1.05);
+        }
+        /* AKHIR CSS SOSIAL ICON */
+
+        /* Wrapper untuk elemen di bagian paling bawah (credits) (DITAMBAHKAN) */
+        .page-footer-elements {
+            text-align: center;
+            padding: 15px 20px 10px 20px; /* Padding atas lebih besar sedikit */
+            margin-top: auto; /* Mendorong ini ke bawah jika konten pendek */
+        }
+        .page-footer-elements .credits-text { 
+            font-size: 0.9em; 
+            color: #777; 
+            /* margin-top tidak lagi relevan di sini karena sudah diatur oleh .page-footer-elements */
+        }
 
     </style>
 </head>
@@ -181,10 +239,38 @@
                     Anda!
                 </p>
                 <a href="https://www.profitableratecpm.com/krknec5qqu?key=bd021bb8d65e4ef371b4c4585172db76" class="cta-button">Lihat Penawaran Lainnya</a>
+                
+                <!-- Teks "Join Channel" (DITAMBAHKAN) -->
+                <p class="join-channel-text">Join Channel Kami:</p> 
+
+                <!-- AWAL IKON SOSIAL (DITAMBAHKAN) -->
+                <div class="social-icons-container-info">
+                    <div class="social-icons">
+                        <a href="https://wa.me/NOMORWHATSAPPANDA" target="_blank" class="icon-circle" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://instagram.com/USERNAMEINSTAGRAMANDA" target="_blank" class="icon-circle" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://t.me/USERNAMETELEGRAMANDA" target="_blank" class="icon-circle" aria-label="Telegram">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                        <!-- Tambahkan ikon lain jika perlu -->
+                    </div>
+                </div>
+                <!-- AKHIR IKON SOSIAL -->
+
+                <!-- Teks credits tidak lagi di sini -->
+            </main>
+
+            <!-- Elemen Footer (Credits) (DIPINDAHKAN KE SINI) -->
+            <div class="page-footer-elements">
                 <p class="credits-text">
                     Dibuat oleh Kawasan Remaja
                 </p>
-            </main>
+                <!-- Jika ada fake counter atau elemen lain di footer, letakkan di sini -->
+            </div>
+
         </div> <!-- Akhir .main-content-wrapper -->
 
         <!-- Navigasi Bawah HTML (Struktur Sama Persis) -->
